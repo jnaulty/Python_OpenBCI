@@ -1,4 +1,14 @@
-"""A sample client for the OpenBCI UDP server."""
+"""
+
+A sample client for the OpenBCI UDP server.
+
+Example use:
+
+args = parser.parse_args()
+client = UDPClient(args.host, int(args.port), args.json)
+client.start_listening()
+
+"""
 
 import argparse
 import cPickle as pickle
@@ -47,7 +57,3 @@ class UDPClient(object):
         print sample.id
         print sample.channels
 
-
-args = parser.parse_args()
-client = UDPClient(args.host, int(args.port), args.json)
-client.start_listening()

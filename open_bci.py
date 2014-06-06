@@ -39,16 +39,19 @@ class OpenBCIBoard(object):
       self.ser.write('x')
       # Dump the first line that says "Arduino: Starting..."
       self.ser.readline()
+      self.streaming = True
     if self.filter_data:
       print 'Enabling filter'
       self.ser.write('f')
       self.ser.readline()
       self.ser.readline()
-    while True:
+    while self.streaming:
       data = self.ser.readline()
       sample = OpenBCISample(data)
       callback(sample)
 
+  def stop_streaming(self):
+    self.streaming = False
 
 class OpenBCISample(object):
   """Object encapulsating a single sample from the OpenBCI board."""
