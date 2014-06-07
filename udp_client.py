@@ -56,4 +56,3 @@ class UDPClient(object):
         # Note that sample is an OpenBCISample object.
         print sample.id
         print sample.channels
-
