@@ -1,4 +1,4 @@
-Python and Node.js with OpenBCI
+Python Library for OpenBCI
 ==============
 
 ![alt tag](https://raw.github.com/theRealWardo/Python_OpenBCI/master/architecture.png)
