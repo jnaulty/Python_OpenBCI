@@ -3,13 +3,14 @@
 Core OpenBCI object for handling connections and samples from the board.
 
 EXAMPLE USE:
+def handle_sample(sample):
+  print(sample.channels)
 
 board = OpenBCIBoard()
 board.print_register_settings()
-board.start_streaming(handle_sample)
+board.start(handle_sample)
 
-def handle_sample(sample):
-  print(sample.channels)
+
 
 """
 
@@ -51,7 +52,7 @@ class OpenBCIBoard(object):
       # Dump the first line that says "Arduino: Starting..."
       self.ser.readline()
       self.streaming = True
-    if self.filter_data:
+    if self.filtering_data:
       print 'Enabling filter'
       self.ser.write('f')
       self.ser.readline()
