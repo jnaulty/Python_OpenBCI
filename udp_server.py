@@ -35,7 +35,7 @@ parser.add_argument(
 parser.add_argument(
     '--serial',
     help='The serial port to communicate with the OpenBCI board.',
-    default='/dev/tty.usbmodemfd121')
+    default='COM9')
 parser.add_argument(
     '--baud',
     help='The baud of the serial connection with the OpenBCI board.',
@@ -66,7 +66,7 @@ class UDPServer(object):
 
 args = parser.parse_args()
 obci = open_bci.OpenBCIBoard(args.serial, int(args.baud))
-if args.filtering_data:
+if args.filter_data:
   obci.filter_data = True
 sock_server = UDPServer(args.host, int(args.port), args.json)
-obci.start_streaming(sock_server.handle_sample)
+obci.start(sock_server.handle_sample)

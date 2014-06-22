@@ -29,11 +29,11 @@ class TrialRecorder(object):
 
         for num in xrange(self.num_trials):
           print("starting")  
-          file_name = 'collected%d.csv' % (num) 
+          file_name = 'motor%d.csv' % (num) 
           collector = OpenBCICollector(
                         self.trial_length_in_ms, #buffer size
                         file_name, #file name
-                        '/dev/tty.usbmodemfd121', #serial port connected to board
+                        'COM9', #serial port connected to board
                         115200 #buad rate
                       )
           print("almost done")
@@ -43,5 +43,5 @@ class TrialRecorder(object):
 
 
 
-trial_recorder = TrialRecorder(2, 55)
+trial_recorder = TrialRecorder(5, 500)
 trial_recorder.collect()
