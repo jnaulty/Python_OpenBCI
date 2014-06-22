@@ -29,7 +29,7 @@ class OpenBCIBoard(object):
 
   """
 
-  def __init__(self, port='/dev/tty.usbmodemfd121', baud=115200):
+  def __init__(self, port='COM9', baud=115200):
     self.ser = serial.Serial(port, baud)
     self.dump_registry_data()
     self.streaming = False

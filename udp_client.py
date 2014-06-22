@@ -56,3 +56,7 @@ class UDPClient(object):
         # Note that sample is an OpenBCISample object.
         print sample.id
         print sample.channels
+
+args = parser.parse_args()
+client = UDPClient(args.host, int(args.port), args.json)
+client.start_listening()
