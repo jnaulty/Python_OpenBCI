@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
 
     # grab data
-    data = np.genfromtxt('/data/worldcup0.csv', delimiter=',')
+    data = np.genfromtxt('data/worldcup0.csv', delimiter=',')
 
     # T = time in seconds of sample
     T = 40
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     #for graphing purposes, space lines evenly
     t = np.linspace(0, T, nsamples, endpoint=False)
     a = 0.02
-   
+
 
     #grab channel data
     channel_1 = data [:, 0]
