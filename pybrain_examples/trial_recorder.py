@@ -6,6 +6,8 @@ from open_bci import *
 import numpy as np
 import pickle
 from csv_collector import *
+import time
+
 
 """
 A class to make it simple to collect tagged csv data from the OpenBCI board.
@@ -29,7 +31,7 @@ class TrialRecorder(object):
 
         for num in xrange(self.num_trials):
           print("starting")  
-          file_name = 'motor%d.csv' % (num) 
+          file_name = 'test%d.csv' % (num) 
           collector = OpenBCICollector(
                         self.trial_length_in_ms, #buffer size
                         file_name, #file name
@@ -39,9 +41,13 @@ class TrialRecorder(object):
           print("almost done")
           collector.collect()
           print("done")
+
         
 
 
+# records trial and prints num of trials and sample time in seconds
 
-trial_recorder = TrialRecorder(5, 500)
+trial_recorder = TrialRecorder(1, 250)
+time_sec = trial_recorder.trial_length_in_ms / 250
+print 'Recording %d trials for %d second(s)' % (trial_recorder.num_trials, time_sec) 
 trial_recorder.collect()

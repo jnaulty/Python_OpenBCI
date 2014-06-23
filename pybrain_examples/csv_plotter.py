@@ -5,6 +5,7 @@
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
+import os.path
 
 # class CSV_plotter(ojbect):
 
@@ -22,13 +23,21 @@ import matplotlib.pyplot as plt
 # csv_plotter.plottter
 
 ## put csv file into workable python data.
+
 data = np.genfromtxt('motor0.csv', delimiter=',')
 
 ## create subplot with 8 channels (each column==channel)
 plt.figure(1)
 for x in range(8):
+	plt.subplot(8,1, x)
+	plt.plot(np.fft.fft(data[:x]))
+
+plt.figure(2)
+for x in range(8):
 	plt.subplot(8,1,x)
 	plt.plot(data[:,x])
+# plt.plot(np.fft.fft(data[:,0]))
+# plt.plot(data[:,0])
 plt.show()	
 
 plt.specgram(data[:,0])

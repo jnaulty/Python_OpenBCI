@@ -69,4 +69,8 @@ obci = open_bci.OpenBCIBoard(args.serial, int(args.baud))
 if args.filter_data:
   obci.filter_data = True
 sock_server = UDPServer(args.host, int(args.port), args.json)
+print "|Server now broadcasting at %s| \n \
+      |on port %s\
+      |Serial data from port %s | \n \
+      |With Baude Rate: %d" %(host, port, serial, baud)
 obci.start(sock_server.handle_sample)

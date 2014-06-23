@@ -5,6 +5,7 @@ import csv
 from open_bci import *
 import numpy as np
 import pickle
+import time
 
 
 """
@@ -19,7 +20,7 @@ class OpenBCICollector(object):
 
     def __init__(self,  buffer_size=125,
                  fname = 'collect.csv',
-                 port='/dev/tty.usbmodemfd121', baud=115200):
+                 port='COM9', baud=115200):
         self.board = OpenBCIBoard(port, baud)
         self.fname = fname
         self.buffer_size = buffer_size
@@ -38,6 +39,7 @@ class OpenBCICollector(object):
         if self.counter < self.buffer_size:
           self.csv_writer.writerow(sample.channels)
           self.counter +=  1 
+         
         else:
           self.board.stop_streaming()
           self.board.disconnect()
