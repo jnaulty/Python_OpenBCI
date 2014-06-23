@@ -35,7 +35,7 @@ parser.add_argument(
 parser.add_argument(
     '--serial',
     help='The serial port to communicate with the OpenBCI board.',
-    default='COM9')
+    default='/dev/tty.usbmodem1411')
 parser.add_argument(
     '--baud',
     help='The baud of the serial connection with the OpenBCI board.',
