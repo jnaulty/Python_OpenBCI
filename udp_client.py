@@ -15,6 +15,7 @@ import cPickle as pickle
 import json
 import open_bci
 import socket
+from  msgpack import Unpacker
 
 
 parser = argparse.ArgumentParser(
@@ -47,10 +48,11 @@ class UDPClient(object):
   def start_listening(self, callback=None):
     while True:
       data, addr = self.client.recvfrom(1024)
-      if self.json:
-        sample = json.loads(data)
-        # In JSON mode we only recieve channel data.
-        print data
+      if True:
+        unpacker = Unpacker(use_list = False)
+        unpacker.feed(data)
+        sample = list(unpacker)
+        print sample
       else:
         sample = pickle.loads(data)
         # Note that sample is an OpenBCISample object.

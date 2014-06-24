@@ -12,6 +12,8 @@ import cPickle as pickle
 import json
 import open_bci
 import socket
+import msgpack
+import time
 
 
 parser = argparse.ArgumentParser(
@@ -45,6 +47,7 @@ parser.add_argument(
 class UDPServer(object):
 
   def __init__(self, ip, port, json):
+    self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     self.ip = ip
     self.port = port
     self.json = json
@@ -52,13 +55,25 @@ class UDPServer(object):
         socket.AF_INET, # Internet
         socket.SOCK_DGRAM)
 
+
+
   def send_data(self, data):
     self.server.sendto(data, (self.ip, self.port))
 
   def handle_sample(self, sample):
-    if self.json:
+    datapoint = sample.channels
+    nb_channels = len(datapoint)
+
+    if True:
       # Just send channel data.
-      self.send_data(json.dumps(sample.channels))
+      timestamp = int (time.time())
+      for i in xrange(nb_channels):
+        metric = "channel-%d" %i
+        packet = msgpack.packb((metric, [timestamp, datapoint[i]]))
+        #self.send_data(packet)
+        self.sock.sendto(packet, (socket.gethostname(), 8888))
+        print "sent packet via UDP for metric %s" % metric
+
     else:
       # Pack up and send the whole OpenBCISample object.
       self.send_data(pickle.dumps(sample))
