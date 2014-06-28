@@ -34,6 +34,7 @@ class OpenBCIBoard(object):
     self.dump_registry_data()
     self.streaming = False
     self.filtering_data = False
+    self.channels = 8
 
   def start(self, callback):
     """
@@ -105,7 +106,7 @@ class OpenBCIBoard(object):
   """
   def enable_filters(self):
     self.ser.write('f')
-    self.filtering_data = True;
+    self.filtering_data = True
 
   def disable_filters(self):
     self.ser.write('g')

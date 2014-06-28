@@ -3,7 +3,7 @@ from mne import filter
 import numpy as np
 import matplotlib.pyplot as plt
 
-def _windowed_fft(data, fs):
+def windowed_fft(data, fs):
         """ Applies a Hanning window, calculates FFT, and returns one-sided
         FFT as well as corresponding frequency vector.
         """

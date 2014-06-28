@@ -17,6 +17,7 @@ import open_bci
 import socket
 
 
+
 parser = argparse.ArgumentParser(
     description='Run a UDP client listening for streaming OpenBCI data.')
 parser.add_argument(
@@ -60,3 +61,4 @@ class UDPClient(object):
 args = parser.parse_args()
 client = UDPClient(args.host, int(args.port), args.json)
 client.start_listening()
+
