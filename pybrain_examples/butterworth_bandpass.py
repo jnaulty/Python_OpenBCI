@@ -1,4 +1,3 @@
-
 ##John Naulty##
 ##Modified from http://wiki.scipy.org/Cookbook/ButterworthBandpass ###
 

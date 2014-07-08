@@ -22,14 +22,14 @@ class CSVCollector(object):
         self.fname = fname
         self.counter = 0
         self.file = None
-        self.fieldnames = 
+        self.fieldnames = []
         self.channel_names = []
         for i in range(8):
             self.channel_names.append("channel_" + str(i))
         self.fieldnames.extend(self.channel_names)
-        self.fieldnames.extend = ['time', 'tag']
+        self.fieldnames.extend(['time', 'tag'])
             
-        self.tag = 0
+        self.epoch = 0
         self.bg_thread = None
         
     def stop(self):
@@ -41,7 +41,7 @@ class CSVCollector(object):
         self.bg_thread = None
         self.file.close()
         self.file = None
-        self.tag = 0
+        self.epoch = 0
 
     def disconnect(self):
         self.board.disconnect()
@@ -51,7 +51,7 @@ class CSVCollector(object):
         sample = sample.channels
         d = dict(zip(self.channel_names, sample))
         d['time'] = t
-        d['tag'] = self.tag
+        d['tag'] = self.epoch
         self.csv_writer.writerow(d)
         self.file.flush()
         
@@ -72,5 +72,5 @@ class CSVCollector(object):
         self.bg_thread.start()
 
 
-    def tag(self, tag):
-        self.tag = tag
+    def tag(self, epoch):
+        self.epoch = epoch

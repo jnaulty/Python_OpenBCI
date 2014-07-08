@@ -1,4 +1,3 @@
-
 from mne import filter
 import numpy as np
 import matplotlib.pyplot as plt
@@ -63,5 +62,3 @@ plt.plot(fft_data, np.sqrt(psd_per_bin))
 plt.figure(2)
 plt.plot(filt_data)
 plt.show() 
-
-                          

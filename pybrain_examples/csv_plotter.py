@@ -1,4 +1,3 @@
-
 ####CSV_Plotter####
 ####John Naulty####
 
@@ -42,5 +41,3 @@ plt.show()
 
 plt.specgram(data[:,0])
 plt.show()
-
-
