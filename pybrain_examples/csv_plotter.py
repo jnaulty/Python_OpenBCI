@@ -23,18 +23,18 @@ import os.path
 
 ## put csv file into workable python data.
 
-data = np.genfromtxt('motor0.csv', delimiter=',')
+data = np.genfromtxt('modbill75.csv', delimiter=',')
 
 ## create subplot with 8 channels (each column==channel)
 plt.figure(1)
 for x in range(8):
 	plt.subplot(8,1, x)
-	plt.plot(np.fft.fft(data[:x]))
+	plt.plot(np.fft.fft(data[:x, 0:100]))
 
 plt.figure(2)
 for x in range(8):
 	plt.subplot(8,1,x)
-	plt.plot(data[:,x])
+	plt.plot(data[0:100,x])
 # plt.plot(np.fft.fft(data[:,0]))
 # plt.plot(data[:,0])
 plt.show()	
