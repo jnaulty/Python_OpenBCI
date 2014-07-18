@@ -19,7 +19,7 @@ class OpenBCICollector(object):
 
     def __init__(self,  buffer_size=125,
                  fname = 'collect.csv',
-                 port='/dev/tty.usbmodemfd121', baud=115200):
+                 port='/dev/ttyACM0', baud=115200):
         self.board = OpenBCIBoard(port, baud)
         self.fname = fname
         self.buffer_size = buffer_size

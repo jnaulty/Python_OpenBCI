@@ -20,7 +20,7 @@ import struct
 import logging
 import numpy as np
 
-import traits.api as t
+#import traits.api as t
 from pyface.timer.api import do_after
 
 READ_INTERVAL_MS = 250
@@ -90,10 +90,9 @@ class OpenBCIBoard(object):
       self.ser.readline()
       self.ser.readline()
     while self.streaming:
-      #data = self.ser.readline()
-      self.read_input_continuously
-      #sample = OpenBCISample(data)
-      #callback(sample)
+      binary_data = self._read_serial_binary()
+      sample = OpenBCISample(binary_data)
+      callback(sample)
       
 
   """
@@ -309,24 +308,18 @@ class OpenBCIBoard(object):
 
         return True
 
-  def read_input_continuously(self):
-        """ Polling function. This polls for any new data once every 
-        READ_INTERVAL_MS milliseconds. If there's an error, it stops polling.
-        """
-        if self.read_input_buffer():
-            do_after(READ_INTERVAL_MS, self.read_input_continuously)    
-
+  
 class OpenBCISample(object):
   """Object encapulsating a single sample from the OpenBCI board."""
 
   def __init__(self, data):
-    parts = data.rstrip().split(', ')
+    #parts = data.rstrip().split(', ')
     self.id = parts[0]
-    self.channels = []
-    for c in xrange(1, len(parts) - 1):
-      self.channels.append(int(parts[c]))
+    self.channels = [1:]
+    #for c in xrange(1, len(parts) - 1):
+    #  self.channels.append(int(parts[c]))
     # This is fucking bullshit but I have to strip the comma from the last
     # sample because the board is returning a comma... wat?
-    self.channels.append(int(parts[len(parts) - 1][:-1])) 
+    #self.channels.append(int(parts[len(parts) - 1][:-1])) 
 
 
