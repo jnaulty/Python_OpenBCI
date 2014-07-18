@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
 
     # grab data
-    data = np.genfromtxt('data/worldcup0.csv', delimiter=',')
+    data = np.genfromtxt('dan_001.csv', delimiter=',')
 
     # T = time in seconds of sample
     T = 40

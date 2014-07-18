@@ -50,7 +50,7 @@ def mne_bandpass_filter(self):
 
 
 hz_per_bin = float(250) / 256
-data = np.genfromtxt('modbill75.csv', delimiter=',')
+data = np.genfromtxt('dan_pythondata.csv', delimiter=' ')
 filt_data = filter.band_pass_filter(data[:, 1], 250, 1, 60)
 psd, fft_data = windowed_fft(filt_data, 250)
 psd_per_bin = psd / hz_per_bin

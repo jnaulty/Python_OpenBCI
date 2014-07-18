@@ -23,7 +23,7 @@ import os.path
 
 ## put csv file into workable python data.
 
-data = np.genfromtxt('modbill75.csv', delimiter=',')
+data = np.genfromtxt('dan_pythondata.csv', delimiter=' ')
 
 ## create subplot with 8 channels (each column==channel)
 plt.figure(1)
