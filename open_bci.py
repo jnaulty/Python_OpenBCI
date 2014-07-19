@@ -59,7 +59,7 @@ class OpenBCIBoard(object):
         self.ser.write('f')
         self.ser.readline()
         
-      # Send an 'b' to the board to tell it to start streaming us text.
+      # Send an 'b' to the board to tell it to start streaming us binary.
       self.ser.write('b')
       # Dump the first line that says "Arduino: Starting..."
       self.ser.readline()
